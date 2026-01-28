@@ -1,3 +1,56 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
 body {
-  background-color: green;
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+body {
+  display: flex;
+}
+
+.calculator {
+  /*Should be resized later*/
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.display {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+}
+.controls {
+  display: flex;
+  flex-direction: column;
+  flex: 5;
+}
+.row-1-3 {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+}
+.row-4-6 {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+}
+.row-7-9 {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+}
+.row-0 {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+}
+.additional-buttons-row {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
 }
