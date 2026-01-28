@@ -30,7 +30,7 @@ body {
   margin: 10px 5px;
   padding: 1px;
   line-height: 100%;
-  font-size: 7vw;
+  font-size: min(10vh, 10vw);
   text-align: right;
 }
 .controls {
@@ -53,7 +53,7 @@ body {
   display: flex;
   flex: 1;
   margin: 10px;
-  font-size: 5vw;
+  font-size: min(7vh, 7vw);
   text-align: center;
   align-items: center;
   justify-content: center;
