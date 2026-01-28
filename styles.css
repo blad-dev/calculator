@@ -24,33 +24,37 @@ body {
   flex-direction: row;
   flex: 1;
 }
+.number-display {
+  display: flex;
+  flex: 1;
+  margin: 10px 5px;
+  padding: 1px;
+  line-height: 100%;
+  font-size: 7vw;
+  text-align: right;
+}
 .controls {
   display: flex;
   flex-direction: column;
   flex: 5;
 }
-.row-1-3 {
-  display: flex;
-  flex-direction: row;
-  flex: 1;
-}
-.row-4-6 {
-  display: flex;
-  flex-direction: row;
-  flex: 1;
-}
-.row-7-9 {
-  display: flex;
-  flex-direction: row;
-  flex: 1;
-}
-.row-0 {
-  display: flex;
-  flex-direction: row;
-  flex: 1;
-}
+
+.row-1-3,
+.row-4-6,
+.row-7-9,
+.row-0,
 .additional-buttons-row {
   display: flex;
   flex-direction: row;
   flex: 1;
+}
+
+.basic-calc-button {
+  display: flex;
+  flex: 1;
+  margin: 10px;
+  font-size: 5vw;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
 }
