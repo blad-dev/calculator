@@ -53,3 +53,78 @@ function handleClick(event) {
 const calculator = document.querySelector('div.calculator');
 const numberDisplay = calculator.querySelector('input.number-display');
 calculator.addEventListener('click', handleClick);
+
+
+
+
+function getIfOneNumberPresent(expression) {
+  if (expression === '') return 0;
+  const regex = /^[0-9]+(\.[0-9]+)?$/g;
+  if (regex.test(expression)) {
+    return new Number(expression);
+  }
+  return NaN;
+}
+function getIfExpressionPresent(expression) {
+  const regex = /^[0-9]+(\.[0-9]+)?(\+|-|\*|\/)[0-9]+(\.[0-9]+)?$/g;
+
+  if (!regex.test(expression)) {
+    return { result: 'Error' };
+  }
+  const numberRegex = /[0-9]+(\.[0-9]+)?/g;
+  const operatorRegex = /(\+|-|\*|\/)/g;
+
+  const returnObject = { result: 'Success' };
+  const execResult = expression.match(numberRegex);
+  returnObject.leftOperand = execResult[0];
+  returnObject.rightOperand = execResult[1];
+  returnObject.operator = operatorRegex.exec(expression)[0];
+  return returnObject;
+}
+function handleNumberPressed(number) {
+  if (numberDisplay.value === '0') {
+    numberDisplay.value = number;
+    return;
+  }
+  numberDisplay.value += number;
+}
+function handleCLEARPressed() {
+  numberDisplay.value = '';
+}
+function handleOperatorPressed(operator) {
+  if ('+-*/'.includes(numberDisplay.value[numberDisplay.value.length - 1])) {
+    const end = numberDisplay.value.length - 1;
+    const newString = numberDisplay.value.substring(0, end) + operator;
+
+    numberDisplay.value = newString;
+    return;
+  }
+  handleEqualsPressed();
+  numberDisplay.value += operator;
+}
+function handleDotPressed(dot) {
+  if (dot === '.') numberDisplay.value += '.';
+}
+function handleConstantPressed(constant) {
+  if (constant === 'e') numberDisplay.value += '2.71828';
+}
+function handleEqualsPressed() {
+  const expression = numberDisplay.value;
+  if (expression === '') {
+    numberDisplay.value = '0';
+    return;
+  }
+  const parseExpression = getIfExpressionPresent(expression);
+
+  if (parseExpression.result === 'Success') {
+    const value = calcSingleOperation(
+      parseExpression.leftOperand,
+      parseExpression.operator,
+      parseExpression.rightOperand,
+    );
+    numberDisplay.value = value;
+    return;
+  }
+  const number = getIfOneNumberPresent(expression);
+  numberDisplay.value = number;
+}
