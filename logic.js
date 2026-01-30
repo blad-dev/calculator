@@ -63,7 +63,7 @@ function getIfOneNumberPresent(expression) {
   if (regex.test(expression)) {
     return new Number(expression);
   }
-  return NaN;
+  return 'ERROR';
 }
 function getIfExpressionPresent(expression) {
   const regex = /^-?[0-9]+(\.[0-9]+)?(\+|-|\*|\/)[0-9]+(\.[0-9]+)?$/g;
@@ -94,7 +94,11 @@ function handleCLEARPressed() {
 }
 function handleBackspacePressed() {
   if (numberDisplay.value.length < 1) return;
-  else if (numberDisplay.value === 'NaN' || numberDisplay.value === 'Infinity') {
+  else if (
+    numberDisplay.value.startsWith('ERROR') ||
+    numberDisplay.value.startsWith('NaN') ||
+    numberDisplay.value === 'Infinity'
+  ) {
     numberDisplay.value = '';
     return;
   }
