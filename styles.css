@@ -74,7 +74,12 @@ body {
   background-color: brown;
   color: white;
 }
+.backspace-command-button{
+  background-color: brown;
+  color: white;
+}
 .equal-command-button{
   background-color: orange;
   color: white;
+  flex: 2;
 }
