@@ -27,6 +27,16 @@ function calcSingleOperation(leftOperand, operation, rightOperand) {
 
 function handleClick(event) {
   const textContent = event.target.textContent;
+  executeCommand(textContent);
+}
+function handleKeyPress(event) {
+  if (event.key === 'Enter') return handleEqualsPressed();
+  else if (event.key === 'Backspace') return handleBackspacePressed();
+  else if (event.key === 'Escape') return handleCLEARPressed();
+  else if (event.key.toLowerCase() === 'e') return handleConstantPressed('e');
+  else executeCommand(event.key);
+}
+function executeCommand(textContent) {
   // prettier-ignore
   switch(textContent){
     case '0': case '1': case '2': case '3': case '4': 
@@ -120,7 +130,7 @@ function handleDotPressed(dot) {
   if (dot === '.') numberDisplay.value += '.';
 }
 function handleConstantPressed(constant) {
-  if (constant === 'e') numberDisplay.value += '2.71828';
+  if (constant === 'e') handleNumberPressed('2.71828');
 }
 function handleEqualsPressed() {
   const expression = numberDisplay.value;
@@ -143,7 +153,8 @@ function handleEqualsPressed() {
   numberDisplay.value = number;
 }
 
-
 const calculator = document.querySelector('div.calculator');
 const numberDisplay = calculator.querySelector('input.number-display');
 calculator.addEventListener('click', handleClick);
+
+document.addEventListener('keydown', handleKeyPress);
