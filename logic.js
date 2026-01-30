@@ -59,25 +59,26 @@ calculator.addEventListener('click', handleClick);
 
 function getIfOneNumberPresent(expression) {
   if (expression === '') return 0;
-  const regex = /^[0-9]+(\.[0-9]+)?$/g;
+  const regex = /^-?[0-9]+(\.[0-9]+)?$/g;
   if (regex.test(expression)) {
     return new Number(expression);
   }
   return NaN;
 }
 function getIfExpressionPresent(expression) {
-  const regex = /^[0-9]+(\.[0-9]+)?(\+|-|\*|\/)[0-9]+(\.[0-9]+)?$/g;
+  const regex = /^-?[0-9]+(\.[0-9]+)?(\+|-|\*|\/)[0-9]+(\.[0-9]+)?$/g;
 
   if (!regex.test(expression)) {
     return { result: 'Error' };
   }
-  const numberRegex = /[0-9]+(\.[0-9]+)?/g;
-  const operatorRegex = /(\+|-|\*|\/)/g;
+  const leftNumberRegex = /^-?[0-9]+(\.[0-9]+)?/g;
+  const rightNumberRegex = /[0-9]+(\.[0-9]+)?$/g;
+
+  const operatorRegex = /(?<!^)(\+|-|\*|\/)/g;
 
   const returnObject = { result: 'Success' };
-  const execResult = expression.match(numberRegex);
-  returnObject.leftOperand = execResult[0];
-  returnObject.rightOperand = execResult[1];
+  returnObject.leftOperand = expression.match(leftNumberRegex)[0];
+  returnObject.rightOperand = expression.match(rightNumberRegex)[0];
   returnObject.operator = operatorRegex.exec(expression)[0];
   return returnObject;
 }
