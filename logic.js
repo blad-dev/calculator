@@ -87,6 +87,7 @@ function handleNumberPressed(number) {
     numberDisplay.value = number;
     return;
   }
+  if (numberDisplay.value.startsWith('ERROR')) numberDisplay.value = '';
   numberDisplay.value += number;
 }
 function handleCLEARPressed() {
@@ -105,6 +106,7 @@ function handleBackspacePressed() {
   numberDisplay.value = numberDisplay.value.substring(0, numberDisplay.value.length - 1);
 }
 function handleOperatorPressed(operator) {
+  if (numberDisplay.value.startsWith('ERROR')) numberDisplay.value = 0;
   if ('+-*/'.includes(numberDisplay.value[numberDisplay.value.length - 1])) {
     const end = numberDisplay.value.length - 1;
     const newString = numberDisplay.value.substring(0, end) + operator;
