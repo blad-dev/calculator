@@ -53,11 +53,9 @@ function handleClick(event) {
       break;
   }
 }
-const calculator = document.querySelector('div.calculator');
-const numberDisplay = calculator.querySelector('input.number-display');
-calculator.addEventListener('click', handleClick);
 
 function getIfOneNumberPresent(expression) {
+  // TODO: add Infinity support
   if (expression === '') return 0;
   const regex = /^-?[0-9]+(\.[0-9]+)?$/g;
   if (regex.test(expression)) {
@@ -66,6 +64,7 @@ function getIfOneNumberPresent(expression) {
   return 'ERROR';
 }
 function getIfExpressionPresent(expression) {
+  // TODO: add Infinity support
   const regex = /^-?[0-9]+(\.[0-9]+)?(\+|-|\*|\/)[0-9]+(\.[0-9]+)?$/g;
 
   if (!regex.test(expression)) {
@@ -143,3 +142,8 @@ function handleEqualsPressed() {
   const number = getIfOneNumberPresent(expression);
   numberDisplay.value = number;
 }
+
+
+const calculator = document.querySelector('div.calculator');
+const numberDisplay = calculator.querySelector('input.number-display');
+calculator.addEventListener('click', handleClick);
