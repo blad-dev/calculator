@@ -83,3 +83,17 @@ body {
   color: white;
   flex: 2;
 }
+.flex-container-1,
+.flex-container-2 {
+  display: flex;
+
+  margin: 0px;
+  padding: 0px;
+  border-width: 0px;
+}
+.flex-container-1{
+  flex: 1;
+}
+.flex-container-2{
+  flex: 2;
+}
