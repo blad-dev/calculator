@@ -48,14 +48,14 @@ function handleClick(event) {
     case 'CLEAR':
       handleCLEARPressed();
       break;
+    case '⌫':
+      handleBackspacePressed();
+      break;
   }
 }
 const calculator = document.querySelector('div.calculator');
 const numberDisplay = calculator.querySelector('input.number-display');
 calculator.addEventListener('click', handleClick);
-
-
-
 
 function getIfOneNumberPresent(expression) {
   if (expression === '') return 0;
@@ -90,6 +90,14 @@ function handleNumberPressed(number) {
 }
 function handleCLEARPressed() {
   numberDisplay.value = '';
+}
+function handleBackspacePressed() {
+  if (numberDisplay.value.length < 1) return;
+  else if (numberDisplay.value === 'NaN' || numberDisplay.value === 'Infinity') {
+    numberDisplay.value = '';
+    return;
+  }
+  numberDisplay.value = numberDisplay.value.substring(0, numberDisplay.value.length - 1);
 }
 function handleOperatorPressed(operator) {
   if ('+-*/'.includes(numberDisplay.value[numberDisplay.value.length - 1])) {
